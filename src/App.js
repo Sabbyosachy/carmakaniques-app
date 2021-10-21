@@ -5,20 +5,21 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Notfound from './Pages/Notfound/Notfound';
 import Login from './Pages/Login/Login/Login';
 import Booking from './Pages/Booking/Booking';
 import Hader from './Pages/Shared/Hader/Hader';
 import Footer from './Pages/Shared/Footer/Footer';
+import AuthProvider from './Context/AuthProvider';
 
 
 function App() {
   return (
     <div className="App">
-      <Router>
+     <AuthProvider>
+     <Router>
         <Hader></Hader>
         <Switch>
           <Route exact path="/home">
@@ -39,6 +40,7 @@ function App() {
         </Switch>
         <Footer></Footer>
       </Router>
+     </AuthProvider>
     </div>
   );
 }

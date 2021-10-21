@@ -1,9 +1,11 @@
 
 import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
 
 const Hader = () => {
+  const{user,logOut}=useAuth();
     return (
         <div>
 <Navbar fixed="top"  collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -16,7 +18,10 @@ const Hader = () => {
       <Nav.Link as={Link} to="/home#services">Service</Nav.Link>
       <Nav.Link as={Link} to="/booking">Booking</Nav.Link>
       <Nav.Link as={Link} to="/home#experts">Experts</Nav.Link>
-      <Nav.Link as={Link} to="/login">Login</Nav.Link>
+      <p className="text-light mt-2 px-2">{user?.displayName}</p>
+      {user?.email ? <Button onClick={logOut} className="btn_regular">Logout</Button> 
+      :<Nav.Link as={Link} to="/login">Login</Nav.Link>}
+     
     </Nav>
   </Navbar.Collapse>
   </Container>
